@@ -1,11 +1,31 @@
 import { NextPage } from "next";
 import Link from "next/link";
+import {
+  ThirdwebProvider,
+  metamaskWallet,
+  en,
+} from "@thirdweb-dev/react";
+import { OpSepoliaTestnet } from "@thirdweb-dev/chains";
+import Header from "../components/Header";
+import PoliticSelection from "../components/PoliticSelection";
+
+const clientId = process.env.CLIENT_ID;
 
 const Home: NextPage = () => {
   return (
-    <main className="flex items-center justify-center h-screen">
-      <Link href={"/vote"} className="py-2 px-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">Connect Wallet</Link>
-    </main>
+    <ThirdwebProvider
+      activeChain={OpSepoliaTestnet}
+      clientId={clientId}
+      locale={en()}
+      supportedWallets={[
+        metamaskWallet(),
+      ]}
+    >
+      <main className="h-full">
+        <Header />
+        <PoliticSelection />
+      </main>
+    </ThirdwebProvider>
   );
 };
 
