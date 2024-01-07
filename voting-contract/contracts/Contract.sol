@@ -7,6 +7,9 @@ contract VotingContract {
     struct Candidate {
         uint256 id;
         string name;
+        string photo;
+        string partyName;
+        string description;
         uint256 voteCount;
     }
 
@@ -23,10 +26,22 @@ contract VotingContract {
     uint256[] public candidateIds;
 
     // Constructor to add candidates when deploying the contract
-    constructor(string[] memory _candidateNames) {
+    constructor(string[] memory _candidateNames, string[] memory _candidatePhotos, string[] memory _candidatePartyNames, string[] memory _candidateDescription) {
+        require(_candidateNames.length == _candidatePartyNames.length &&
+                _candidatePartyNames.length == _candidateDescription.length,
+                "Input array lengths do not match!");
+        
         for (uint256 i = 0; i < _candidateNames.length; i++) {
-            candidates[i + 1] = Candidate(i + 1, _candidateNames[i], 0);
-            candidateIds.push(i + 1);
+            uint256 candidateId = i + 1;
+            candidates[candidateId] = Candidate(
+                candidateId,
+                _candidateNames[i],
+                _candidatePhotos[i],
+                _candidatePartyNames[i],
+                _candidateDescription[i],
+                0
+            );
+            candidateIds.push(candidateId);
         }
     }
 
@@ -50,5 +65,17 @@ contract VotingContract {
     // Function to get the list of candidate IDs
     function getCandidateIds() public view returns (uint256[] memory) {
         return candidateIds;
+    }
+
+    // Function to get all the candidates
+    function getAllCandidates() public view returns (Candidate[] memory) {
+        Candidate[] memory allCandidates = new Candidate[](candidateIds.length);
+        
+        for (uint256 i = 0; i < candidateIds.length; i++) {
+            uint256 candidateId = candidateIds[i];
+            allCandidates[i] = candidates[candidateId];
+        }
+
+        return allCandidates;
     }
 }
