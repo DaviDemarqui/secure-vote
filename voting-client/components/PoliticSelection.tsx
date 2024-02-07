@@ -19,8 +19,7 @@ function PoliticSelection() {
                         Select a candidate to vote
                     </h2>
                     <p className="text-gray-600 lg:mx-auto lg:w-8/12">
-                        Tailus prides itself not only on award-winning technology, but also on the talent of its
-                        people of some of the brightest minds and most experienced executives in business.
+                        Exercise your democratic voice! Explore the profiles of our candidates below and make an informed choice for the future of our nation. Your vote matters!
                     </p>
                 </div>
                 <div className="grid gap-28 pt-20 md:grid-cols-3 md:gap-12">
