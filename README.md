@@ -20,3 +20,6 @@ SecureVote is an app made for study proposes with the idea to decentralize the w
 
 **Contract:** Solidity, Thirdweb, Optimism Sepolia Testnet
 
+## Contract
+
+![View Contract](https://optimism-sepolia.blockscout.com/address/0xB3805127Ee6154F36B1A425048F497155Be414D2)
